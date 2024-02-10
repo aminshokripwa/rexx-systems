@@ -1,0 +1,50 @@
+#https://github.com/vcwebnetworks/docker-php8
+#version: "3.9"
+version: "3.3"
+
+networks:
+  phapmy.network:
+    driver: bridge
+
+services:
+  php-apache:
+    ports:
+      - "8037:80"
+    restart: always
+    build: './build/php'
+    volumes:
+      - ./app:/var/www/html
+    networks:
+      - phapmy.network
+
+  mysql:
+    ports:
+      - "1201:3306"
+    build: './build/mysql'
+    restart: always
+    environment:
+         MYSQL_DATABASE: DB_root
+         MYSQL_ROOT_USER: root
+         MYSQL_ROOT_PASSWORD: Am!npwa
+         #MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    volumes:
+      - dbDatait:/var/lib/mysql
+    networks:
+      - phapmy.network
+
+  phpmyadminphp:
+      container_name: phpmyadminphp
+      image: phpmyadmin/phpmyadmin
+      ports:
+        - '8127:80'
+      restart: always
+      environment:
+          PMA_HOST: mysql
+      depends_on:
+        - mysql
+      networks:
+        - phapmy.network
+
+volumes:
+  app:
+  dbDatait:

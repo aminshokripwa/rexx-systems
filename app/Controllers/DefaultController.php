@@ -119,7 +119,6 @@ class defaultController extends VersionComparator
             $currentVersion = $item['version'];
             $targetVersion = "1.0.17+60";
             
-            print_r($this->isPriorTo($currentVersion, $targetVersion));
             if ($this->isPriorTo($currentVersion, $targetVersion)) {
                 //echo $currentVersion . " is prior to " . $targetVersion;
                 $berlinOrUTC = 'berlin';

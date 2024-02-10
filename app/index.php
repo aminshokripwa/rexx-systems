@@ -24,7 +24,7 @@
 
             $check_table = $migration->checkIfTabaleExist();
 
-            if (str_contains($check_table, 'event_list')) {
+            if ($check_table == 2) {
 
                 //add sql table to database 
                 $migration->addTablesToDatabase();

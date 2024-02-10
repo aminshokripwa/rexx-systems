@@ -1,8 +1,8 @@
 <?php
 
 // Database connection and schema design
-$servername = "localhost";
+$servername = "mysql";
 $username = "root";
-$password = "";
-$dbname = "checkme";
+$password = "Am!npwa";
+$dbname = "DB_root";
 $jsonfile = "Challenge.json";

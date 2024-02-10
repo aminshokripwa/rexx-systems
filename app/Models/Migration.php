@@ -24,7 +24,7 @@ class Migration extends SqlData
             $stmt->execute();
             return 1  ;
         } catch(PDOException $e) {
-            return "Error: " . $e->getMessage();
+            return 2  ;
         }
     }
 
