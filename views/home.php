@@ -35,7 +35,16 @@
                         <?php
                         if (! empty($dateResult)) {
                             foreach ($dateResult as $key => $value) {
-                                echo '<option value="' . $dateResult[$key]['id'] . '">' . $dateResult[$key]['event_date'] . '</option>';
+                                //chenge event date to utc if needed 
+                                if($dateResult[$key]['priorBerlin_afterwardsUTC'] == 'berli'){
+                                    //Berlin is 1 hour ahead of Coordinated Universal Time
+                                    $event_date = $dateResult[$key]['event_date'];
+                                    $event_date = strtotime($event_date) - 3600; // minus 1 hour 
+                                    $event_date = date('Y-m-d H:i:s', $event_date); // Back to string
+                                }else{
+                                    $event_date = $dateResult[$key]['event_date'];
+                                } 
+                                echo '<option value="' . $dateResult[$key]['id'] . '">' . $event_date . '</option>';
                             }
                         }
                         ?>
@@ -124,6 +133,15 @@
                 }
                 if (! empty($result)) {
                     foreach ($result as $key => $value) {
+                        //chenge event date to utc if needed 
+                        if($result[$key]['priorBerlin_afterwardsUTC'] == 'berli'){
+                            //Berlin is 1 hour ahead of Coordinated Universal Time
+                            $event_date = $result[$key]['event_date'];
+                            $event_date = strtotime($event_date) - 3600; // minus 1 hour 
+                            $event_date = date('Y-m-d H:i:s', $event_date); // Back to string
+                        }else{
+                            $event_date = $result[$key]['event_date'];
+                        }
                         ?>
                 <tr>
                         <td><div class="col" id="user_data_1"><?= $result[$key]['participation_id']; ?></div></td>
@@ -131,7 +149,7 @@
                         <td><div class="col" id="user_data_3"><?= $result[$key]['employee_mail']; ?> </div></td>
                         <td><div class="col" id="user_data_3"><?= $result[$key]['event_name']; ?> </div></td>
                         <td><div class="col" id="user_data_3"><?= $result[$key]['participation_fee']; ?> </div></td>
-                        <td><div class="col" id="user_data_3"><?= $result[$key]['event_date']; ?> </div></td>
+                        <td><div class="col" id="user_data_3"><?= $event_date; ?> </div></td>
                         <td><div class="col" id="user_data_3"><?= $result[$key]['versions']; ?> </div></td>
                         <td><div class="col" id="user_data_3"><?= $result[$key]['priorBerlin_afterwardsUTC']; ?> </div></td>
                     </tr>
@@ -144,7 +162,7 @@
                 <tfoot>
                     <tr>
                     <td class="text-center" colspan="2">Sum</td>
-                    <td class="text-center" colspan="5">$<?=number_format($sum_fee)?></td>
+                    <td class="text-center" colspan="6">$<?=number_format($sum_fee)?></td>
                     </tr>
                 </tfoot>
             </table>

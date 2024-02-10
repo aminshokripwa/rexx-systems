@@ -109,7 +109,8 @@
 
         $employeeResult = $defaultController->runQuery("SELECT DISTINCT employee_name, id FROM employee_list ORDER BY employee_name ASC");
         $eventResult = $defaultController->runQuery("SELECT DISTINCT event_name, id FROM event_list ORDER BY event_name ASC");
-        $dateResult = $defaultController->runQuery("SELECT DISTINCT event_date, id FROM date_list ORDER BY event_date ASC");
+        $dateResult = $defaultController->runQuery("SELECT DISTINCT date_list.event_date, date_list.id, participation.priorBerlin_afterwardsUTC FROM date_list LEFT JOIN participation ON date_list.id = participation.date_id ORDER BY event_date ASC");
+        //print_r($dateResult);
         $sum_fee = 0 ;
 
         include 'views/home.php';
