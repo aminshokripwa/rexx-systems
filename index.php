@@ -1,14 +1,15 @@
 <?php
 
-    function removesymbols($string)
-    {
-        return preg_replace('/[^A-Za-z0-9\-]/', '', $string);
-    }
-
+    //Design a database scheme for optimized storage
     include 'Models/Sqldata.php';
     include 'Models/Migration.php';
     $migration = new Migration();
 
+    //insert usefull fuctions
+    include 'Core/Usefull.php';
+
+    //Read the json data and save it to the database using php
+    //Additional information
     include 'Controllers/VersionController.php';
     include 'Controllers/DefaultController.php';
     $defaultController = new defaultController();
@@ -17,6 +18,7 @@
 
     if(file_exists($filename)) {
         //check if not filtred
+        //v1 read json file
         //if(empty($_POST)) {
             //check to mysql
 
@@ -113,6 +115,7 @@
         //print_r($dateResult);
         $sum_fee = 0 ;
 
+        //Create a simple page with filters for the employee name, event name and date
         include 'views/home.php';
 
     } else {
