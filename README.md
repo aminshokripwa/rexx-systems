@@ -23,8 +23,8 @@ To use this system , Just enter the code below :
 
 ## Link
 
- [first page](http://localhost:8037)
+ [First Page](http://localhost:8037)
  
- [phpMyAdmin](http://localhost:8127)
+ [PhpMyAdmin Page](http://localhost:8127)
 
 > It's possible to change Challenge.json json at any time , I did not optimize the file and used the same original file, you can easily change it.
